@@ -9,6 +9,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { BooksComponent } from './books/books.component';
 import { BookComponent } from './books/book/book.component';
+import { AuthornamesPipe } from './pipes/authornames.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { BookComponent } from './books/book/book.component';
     AboutComponent,
     ContactComponent,
     BooksComponent,
-    BookComponent
+    BookComponent,
+    AuthornamesPipe
   ],
   imports: [
     BrowserModule,
