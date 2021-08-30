@@ -19,4 +19,8 @@ export class BooksService {
     // tslint:disable-next-line:radix
     return <Book>this.books.find(book => book.id === Number.parseInt(id));
   }
+
+  public addBook(b: Book): void {
+    this.books.push(b);
+  }
 }
