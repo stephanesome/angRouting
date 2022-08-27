@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormArray, FormBuilder, FormControl, Validators} from '@angular/forms';
+import {AbstractControl, UntypedFormArray, UntypedFormBuilder, UntypedFormControl, Validators} from '@angular/forms';
 import {Book} from '../books/model/book';
 import {BooksService} from '../books/service/books.service';
 
-function categoryValidator(control: FormControl): { [s: string]: boolean } | null {
+function categoryValidator(control: UntypedFormControl): { [s: string]: boolean } | null {
   const validCategories = ['Kids', 'Tech', 'Cook'];
   if (!validCategories.includes(control.value)) {
     return {invalidCategory: true};
@@ -31,11 +31,11 @@ export class AdminComponent implements OnInit {
   get category(): AbstractControl {return <AbstractControl>this.bookForm.get('category'); }
   get title(): AbstractControl {return <AbstractControl>this.bookForm.get('title'); }
   get cost(): AbstractControl {return <AbstractControl>this.bookForm.get('cost'); }
-  get authors(): FormArray {
-    return this.bookForm.get('authors') as FormArray;
+  get authors(): UntypedFormArray {
+    return this.bookForm.get('authors') as UntypedFormArray;
   }
 
-  constructor(private builder: FormBuilder,
+  constructor(private builder: UntypedFormBuilder,
               private booksService: BooksService) { }
 
   ngOnInit(): void {
