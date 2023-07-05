@@ -16,7 +16,7 @@ export class BookComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      const id = params.id;
+      const id = params['id'];
       this.selectedBook = this.booksService.getBook(id);
     });
   }

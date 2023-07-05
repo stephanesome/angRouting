@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {AbstractControl, FormArray, FormBuilder, FormControl, Validators} from '@angular/forms';
 import {Author, Book} from '../books/model/book';
 import {BooksService} from '../books/service/books.service';
@@ -16,7 +16,7 @@ function categoryValidator(control: FormControl<string>): { [s: string]: boolean
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent {
   bookForm = this.builder.group({
     id: ['', [Validators.required, Validators.pattern('[1-9]\\d{3}')]],
     category: ['', [Validators.required, categoryValidator]],
@@ -37,9 +37,6 @@ export class AdminComponent implements OnInit {
 
   constructor(private builder: FormBuilder,
               private booksService: BooksService) { }
-
-  ngOnInit(): void {
-  }
 
   onSubmit(): void {
     const book =  new Book(Number(this.bookForm.value.id),
