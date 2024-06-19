@@ -16,7 +16,6 @@ export class BooksService {
   constructor() {}
 
   public getBook(id: string): Book {
-    // tslint:disable-next-line:radix
     return <Book>this.books.find(book => book.id === Number.parseInt(id));
   }
 
