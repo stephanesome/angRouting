@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import {AbstractControl, FormArray, FormBuilder, FormControl, Validators} from '@angular/forms';
+import {Component, inject} from '@angular/core';
+import { AbstractControl, FormArray, FormBuilder, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {Author, Book} from '../books/model/book';
 import {BooksService} from '../books/service/books.service';
+import { NgFor } from '@angular/common';
 
 function categoryValidator(control: FormControl<string>): { [s: string]: boolean } | null {
   const validCategories = ['Kids', 'Tech', 'Cook'];
@@ -12,11 +13,15 @@ function categoryValidator(control: FormControl<string>): { [s: string]: boolean
 }
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+    selector: 'app-admin',
+    templateUrl: './admin.component.html',
+    styleUrls: ['./admin.component.css'],
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule, NgFor]
 })
 export class AdminComponent {
+  private builder: FormBuilder = inject(FormBuilder);
+  private booksService: BooksService = inject(BooksService);
   bookForm = this.builder.group({
     id: ['', [Validators.required, Validators.pattern('[1-9]\\d{3}')]],
     category: ['', [Validators.required, categoryValidator]],
@@ -34,9 +39,6 @@ export class AdminComponent {
   get authors(): FormArray {
     return this.bookForm.get('authors') as FormArray;
   }
-
-  constructor(private builder: FormBuilder,
-              private booksService: BooksService) { }
 
   onSubmit(): void {
     const book =  new Book(Number(this.bookForm.value.id),

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {noop} from 'rxjs';
 
@@ -7,8 +7,7 @@ import {noop} from 'rxjs';
 })
 export class AuthenticationService {
   redirectUrl: string | null | undefined;
-
-  constructor(private router: Router) {}
+  private router: Router = inject(Router);
 
   login(user: string, password: string): boolean {
     // hard coded for now

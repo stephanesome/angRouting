@@ -13,8 +13,6 @@ export class BooksService {
     new Book(1005, 'Tech', 'Angular Demystified', 210.50, [new Author('Zorb', 'Tar')], 2020)
   ];
 
-  constructor() {}
-
   public getBook(id: string): Book {
     return <Book>this.books.find(book => book.id === Number.parseInt(id));
   }
