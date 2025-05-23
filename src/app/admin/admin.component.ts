@@ -2,7 +2,6 @@ import {Component, inject} from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {Author, Book} from '../books/model/book';
 import {BooksService} from '../books/service/books.service';
-import { NgFor } from '@angular/common';
 
 function categoryValidator(control: FormControl<string>): { [s: string]: boolean } | null {
   const validCategories = ['Kids', 'Tech', 'Cook'];
@@ -13,11 +12,11 @@ function categoryValidator(control: FormControl<string>): { [s: string]: boolean
 }
 
 @Component({
-    selector: 'app-admin',
-    templateUrl: './admin.component.html',
-    styleUrls: ['./admin.component.css'],
-    standalone: true,
-    imports: [FormsModule, ReactiveFormsModule, NgFor]
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.css'],
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule]
 })
 export class AdminComponent {
   private builder: FormBuilder = inject(FormBuilder);
