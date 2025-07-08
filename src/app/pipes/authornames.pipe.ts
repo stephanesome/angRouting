@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {Author} from '../books/model/book';
+import {AuthorEntity} from '../books/model/book-entity';
 
 @Pipe({
     name: 'authornames',
@@ -7,7 +7,7 @@ import {Author} from '../books/model/book';
 })
 export class AuthornamesPipe implements PipeTransform {
 
-  transform(value: Author[] | undefined): string {
+  transform(value: AuthorEntity[] | undefined): string {
     if (value === undefined) return '';
     return value.map((author) => `${author.firstName}, ${author.lastName}`).join(' <b>and</b> ');
   }

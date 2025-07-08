@@ -1,18 +1,17 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Book} from '../model/book';
-import {BooksService} from '../service/books.service';
+import {BookEntity} from '../model/book-entity';
+import {BooksService} from '../service/books-service';
 import { AuthornamesPipe } from '../../pipes/authornames.pipe';
 
 @Component({
   selector: 'app-book',
-  templateUrl: './book.component.html',
-  styleUrls: ['./book.component.css'],
-  standalone: true,
+  templateUrl: './book.html',
+  styleUrls: ['./book.css'],
   imports: [AuthornamesPipe]
 })
-export class BookComponent implements OnInit {
-  selectedBook!: Book;
+export class Book implements OnInit {
+  selectedBook!: BookEntity;
   private route: ActivatedRoute = inject(ActivatedRoute);
   private booksService: BooksService = inject(BooksService);
 

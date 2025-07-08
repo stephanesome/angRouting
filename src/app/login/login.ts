@@ -1,19 +1,19 @@
 import {Component, inject} from '@angular/core';
-import {AuthenticationService} from '../authentication.service';
+import {Authentication} from '../authentication';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  templateUrl: './login.html',
+  styleUrls: ['./login.css'],
   standalone: true,
   imports: [FormsModule]
 })
-export class LoginComponent {
+export class Login {
   username = '';
   password = '';
   message!: string;
-  private loginService: AuthenticationService = inject(AuthenticationService);
+  private loginService: Authentication = inject(Authentication);
 
   get isLoggedIn(): boolean {
     return this.loginService.isLoggedIn();

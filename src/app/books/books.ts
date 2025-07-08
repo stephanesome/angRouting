@@ -3,12 +3,12 @@ import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-books',
-  templateUrl: './books.component.html',
-  styleUrls: ['./books.component.css'],
+  templateUrl: './books.html',
+  styleUrls: ['./books.css'],
   standalone: true,
   imports: [RouterOutlet]
 })
-export class BooksComponent {
+export class Books {
   private router: Router = inject(Router);
   private route: ActivatedRoute = inject(ActivatedRoute);
 

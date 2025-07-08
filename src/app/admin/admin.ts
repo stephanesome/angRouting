@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {Author, Book} from '../books/model/book';
-import {BooksService} from '../books/service/books.service';
+import {AuthorEntity, BookEntity} from '../books/model/book-entity';
+import {BooksService} from '../books/service/books-service';
 
 function categoryValidator(control: FormControl<string>): { [s: string]: boolean } | null {
   const validCategories = ['Kids', 'Tech', 'Cook'];
@@ -13,12 +13,11 @@ function categoryValidator(control: FormControl<string>): { [s: string]: boolean
 
 @Component({
   selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css'],
-  standalone: true,
+  templateUrl: './admin.html',
+  styleUrls: ['./admin.css'],
   imports: [FormsModule, ReactiveFormsModule]
 })
-export class AdminComponent {
+export class Admin {
   private builder: FormBuilder = inject(FormBuilder);
   private booksService: BooksService = inject(BooksService);
   bookForm = this.builder.group({
@@ -40,11 +39,11 @@ export class AdminComponent {
   }
 
   onSubmit(): void {
-    const book =  new Book(Number(this.bookForm.value.id),
+    const book =  new BookEntity(Number(this.bookForm.value.id),
       <string>this.bookForm.value.category,
       <string>this.bookForm.value.title,
       Number(this.bookForm.value.cost),
-      <Author[]>this.bookForm.value.authors,
+      <AuthorEntity[]>this.bookForm.value.authors,
       Number(this.bookForm.value.year),
       <string>this.bookForm.value.description);
     this.booksService.addBook(book);
