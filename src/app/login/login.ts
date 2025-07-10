@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {Authentication} from '../authentication';
+import {AuthenticationService} from '../authentication-service';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -13,7 +13,7 @@ export class Login {
   username = '';
   password = '';
   message!: string;
-  private loginService: Authentication = inject(Authentication);
+  private loginService: AuthenticationService = inject(AuthenticationService);
 
   get isLoggedIn(): boolean {
     return this.loginService.isLoggedIn();

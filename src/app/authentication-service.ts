@@ -5,7 +5,7 @@ import {noop} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class Authentication {
+export class AuthenticationService {
   redirectUrl: string | null | undefined;
   private router: Router = inject(Router);
 
